@@ -144,7 +144,7 @@ parser = arithmetic_parsing.Parser(
 )
 ```
 
-We can use this to convert the value to assembly:\
+We can use this to convert the value to assembly:
 ```python
 from arithmetic_parsing.examples import assembly
 
