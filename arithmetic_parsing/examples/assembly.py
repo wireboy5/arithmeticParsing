@@ -1,5 +1,5 @@
 from itertools import cycle
-import arithmatic_parsing
+import arithmetic_parsing
 import string
 registers = [
         ("rax", 64),
@@ -166,7 +166,7 @@ def main():
     equation = "(a+2*3)+7-(a+2*8)"
 
     # Parse
-    parser = arithmatic_parsing.Parser()
+    parser = arithmetic_parsing.Parser()
     parsed = parser.parse(equation, namespace="asm")
 
     # Convert to assembly

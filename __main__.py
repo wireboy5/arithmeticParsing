@@ -1,9 +1,9 @@
-import arithmatic_parsing
+import arithmetic_parsing
 import argparse
 
 
 """
-    Basic program to test arithmatic_parsing
+    Basic program to test arithmetic_parsing
 """
 
 
@@ -33,7 +33,7 @@ args = parser.parse_args()
 
 
 # Create parser with default values
-parser = arithmatic_parsing.Parser(
+parser = arithmetic_parsing.Parser(
     optimize= not args.nooptimize,
     sort = not args.nosort
 )

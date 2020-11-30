@@ -41,7 +41,7 @@ class ParseResult:
 class Parser:
     def __init__(self, optimize: bool = True, sort: bool = True, tokens: dict[str, int] = basicTokens):
         """
-            A basic infix arithmatic parsing class
+            A basic infix arithmetic parsing class
             
             - Optimize [bool]
                 Specifies whether to "optimize" the code. This mainly resolves constant integers.
@@ -52,7 +52,7 @@ class Parser:
             - Sort [bool]
                 You almost never want to set this to False. This makes sure that 
                 values areclosest to their first reference. If you wanted to 
-                use this to convert arithmatic to assembly, you would need to do this anyways
+                use this to convert arithmetic to assembly, you would need to do this anyways
         """
         self.optimize = optimize
         self.sort = sort
