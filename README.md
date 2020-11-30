@@ -1,7 +1,7 @@
 # arithmeticParsing
 
 Arithmetic parsing is a simple python library designed for parsing arithmetic expressions.\
-It is designed to be easy to use and to maintain, and does not focus on optimization as much as it does ease of use.\
+It is designed to be easy to use and to maintain, and does not focus on optimization as much as it does ease of use.
 
 This library is designed to use minimal dependancies, and the only non-standard-library module this uses is [treelib](https://github.com/caesar0301/treelib)
 
