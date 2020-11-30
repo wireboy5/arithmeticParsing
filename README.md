@@ -9,7 +9,7 @@ This library is designed to use minimal dependancies, and the only non-standard-
 To install, it is as easy as using pip on this git repository \
 I recommend using python -m pip instead of just pip, as this confirms that you are installing on the right python version
 ```bash
-python3.9 -m pip install git+https://github.com/wireboy5/arithmeticParsing
+python3.9 -m pip install arithmetic-parsing
 ```
 You can also install by cloning and then running setup.py
 ```bash
