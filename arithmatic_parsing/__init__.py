@@ -33,6 +33,9 @@ class ParseResult:
     def as_json(self):
         return self.tree.to_json()
 
+    def as_list(self):
+        return self.tree_list
+
 
 
 class Parser:
