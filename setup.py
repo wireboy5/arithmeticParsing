@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="arithmetic-parsing", # Replace with your own username
-    version="0.0.1",
+    version="0.0.1-2",
     author="Riley Wilton",
     author_email="riley.j.wilton@gmail.com",
     description="A simple, easy to use, arithmetic parsing tool with minimal dependencies",
