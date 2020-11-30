@@ -108,7 +108,6 @@ print(parsed.as_list())
     ['dyn', 'base_2', '+', 'base_1', 'base_0']
 ]
 ```
-Ignore the first bit that says dyn, that will be removed soon.
 
 Lets take a look at the first item:
 ```python
