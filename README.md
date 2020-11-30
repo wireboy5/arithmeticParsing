@@ -17,7 +17,7 @@ git clone https://github.com/wireboy5/arithmeticParsing
 cd arithmeticParsing
 python3.9 setup.py install
 ```
-## Basic usage
+## Usage
 
 arithmetic-parsing was designed to be as easy as possible to use\
 A basic example:
@@ -96,7 +96,7 @@ print(parsed.as_json())
 }
 ```
 
-The real reason I created arithmeticParsing is the list output:
+Another output form is the list output
 ```python
 print(parsed.as_list())
 ```
@@ -143,3 +143,27 @@ parser = arithmetic_parsing.Parser(
     sort = False
 )
 ```
+
+We can use this to convert the value to assembly:\
+```python
+from arithmetic_parsing.examples import assembly
+
+asm = assembly.listToAssembly(parsed.as_list(),parseString)
+
+asm = "\n".join(asm)
+
+print(asm)
+```
+This will output NASM code:
+```nasm
+mov rbx, [testVar2]
+add rbx, 12
+mov rbx, [testVar1]
+add rbx, 12
+mov rax, rbx
+add rax, rbx'
+```
+NOTE: Do not use this function for converting to assembly in an actual program. \
+This function is for demonstration purposes and has not been tested thouroughly
+
+
