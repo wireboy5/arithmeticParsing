@@ -139,7 +139,10 @@ def listToAssembly(tree_list: list[list], origExpr: str, namespace: str = "base"
             out += [
                 f"mov {reg}, {resolve_value(a)}"
             ]
-        
+        # If we are adding a negative, switch to a subtraction
+        if op == "+" and b.startswith("-"):
+            b = b.lstrip("-")
+            op = "-"
         # Resolve the operator
         if op == "+":   # Add
             out += [
