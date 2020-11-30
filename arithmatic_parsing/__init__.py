@@ -1,6 +1,7 @@
 from treelib import Tree, Node
 from collections import deque
 from . import mathFuncs
+import treelib
 import math
 import re
 
@@ -19,7 +20,18 @@ def split_keep(s,d):
     return [substr + d for substr in split[:-1]] + [split[-1]]
 
 
+class ParseResult:
+    tree_list: list[list]
+    infix: str
+    prefix: str
+    postfix: str
+    tree: Tree
 
+    def __str__(self):
+        return self.tree.__str__()
+    
+    def as_json(self):
+        return self.tree.to_json()
 
 
 
@@ -507,7 +519,8 @@ class Parser:
 
         # Return tree_list
         return tree_list
-    def parse(self, expr: str, namespace: str = "base"):
+    
+    def parse(self, expr: str, namespace: str = "base") -> ParseResult:
         """
             Parse the expr to a result
 
@@ -533,3 +546,21 @@ class Parser:
             tree_list = self.sort_tree_list(tree_list, namespace)
         
         # Lets generate the result
+        results = ParseResult()
+
+        # Set the tree list
+        results.tree_list = tree_list[0]
+
+        # Set the infix value
+        results.infix = expr
+        
+        # Generate and set the prefix value
+        results.prefix = self.infix_to_prefix(expr)
+
+        # Generate and set the postfix value
+        results.postfix = self.infix_to_postfix(expr)
+
+        # Set the tree value
+        results.tree = tree
+        # Return results
+        return results
