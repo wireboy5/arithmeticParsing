@@ -1,5 +1,6 @@
+from treelib import Tree, Node
+from collections import deque
 import re
-from re import L
 
 
 basicTokens = {
@@ -142,7 +143,7 @@ class Parser:
             - expr [str]
                 The input expression
         """
-        
+
         # Reverse expr
         expr = reversed(expr)
 
@@ -170,3 +171,79 @@ class Parser:
 
         # Return expr
         return expr
+
+    def add_prefix_to_node(self, prefix_deque: deque, tree: Tree, node: Node, index: int) -> Tree, int:
+        """
+            Adds the prefix algebra to a treelib node.
+            This should not be accessed externally
+        """
+
+        # Get the current token by popping the left of the prefix_deque
+        token = prefix_deque.popleft()
+
+
+        # If the token is an operator
+        if self.is_token(token):
+            # Create a new node
+            new_node = tree.create_node(
+                f"{token}", # Name the same as token
+                index, # ID that of index
+                parent = node # And parent this node
+            )
+            # Increment index
+            index += 1
+
+            # Calculate child A
+            tree,index = self.add_prefix_to_node(prefix_deque, tree, new_node, index)
+
+            # Calculate child B
+            tree,index = self.add_prefix_to_node(prefix_deque, tree, new_node, index)
+
+            # Return the tree and the index
+            return tree, index
+        else:
+            # If the token is not an operator
+
+            # Just create a new node
+            new_node = tree.create_node(
+                f"{token}", # Name the same as token
+                index, # ID that of index
+                parent = node # And parent this node
+            )
+
+            # Increment index
+            index += 1
+            
+            # Return index and tree
+            return tree, index
+
+    def prefix_to_tree(self, expr: str, delimeter: str = None, node_name: str = "base") -> str:
+        """
+            Converts prefix math to a treelib tree.
+
+            - expr [str]
+                The input expression
+                This MUST be delimeted by some form
+                of delimeter
+
+            - delimeter [str] = None
+                This is the character that the infix algebra is delimeted
+                by. None means whitespace
+            
+            - name [str] = "base"
+                The name of the root node of the tree
+        """
+        # Create a tree
+        tree = Tree()
+
+        # Convert the expression to a deque
+        expr_deque = deque(expr.split(delimeter))
+
+        # Create a base node
+        base_node = tree.create_node(node_name,0)
+
+        # Start the add loop
+        tree, count = self.add_prefix_to_node(expr_deque, tree, base_node, 1)
+
+        # Return tree
+        return tree
