@@ -172,7 +172,7 @@ class Parser:
         # Return expr
         return expr
 
-    def add_prefix_to_node(self, prefix_deque: deque, tree: Tree, node: Node, index: int) -> Tree, int:
+    def add_prefix_to_node(self, prefix_deque: deque, tree: Tree, node: Node, index: int) -> tuple[Tree, int]:
         """
             Adds the prefix algebra to a treelib node.
             This should not be accessed externally
@@ -247,3 +247,26 @@ class Parser:
 
         # Return tree
         return tree
+    
+    def infix_to_tree(self, expr: str, delimeter: str = None, node_name: str = "base"):
+        """
+            Converts post math to a treelib tree.
+
+            - expr [str]
+                The input expression
+                This MUST be delimeted by some form
+                of delimeter
+
+            - delimeter [str] = None
+                This is the character that the infix algebra is delimeted
+                by. None means whitespace
+            
+            - name [str] = "base"
+                The name of the root node of the tree
+        """
+
+        # Convert expr to prefix
+        prefix = self.infix_to_prefix(expr)
+
+        # Return prefix_to_tree of this expr
+        return self.prefix_to_tree(prefix, delimeter, node_name)
