@@ -96,4 +96,50 @@ print(parsed.as_json())
 }
 ```
 
+The real reason I created arithmeticParsing is the list output:
+```python
+print(parsed.as_list())
+```
 
+```python
+[
+    ['dyn', 'base_0', '+', 'testVar2', '12'], 
+    ['dyn', 'base_1', '+', 'testVar1', '12'], 
+    ['dyn', 'base_2', '+', 'base_1', 'base_0']
+]
+```
+Ignore the first bit that says dyn, that will be removed soon.
+
+Lets take a look at the first item:
+```python
+['dyn', 'base_0', '+', 'testVar2', '12']
+```
+And lets break it down
+- Dyn
+    - This specifies that it is a dynamic value, and not a constant
+- base_0
+    - This is the variable name, If you were to convert this into something like python.
+- +
+    - This is the operator
+- testVar2
+    - This is the first operand
+- 12
+    - This is the second operand
+
+Notice how it has 12 instead of 2 * 6?\
+That is because it is optimizing the result.\
+We can disable this optimization by setting optimize to false:
+```python
+parser = arithmetic_parsing.Parser(
+    optimized = False
+)
+```
+
+Also notice that the parsed list has the values in a different order than you would expect? \
+The parser automatically sorts them to be as close as possible to their first reference, from the top down.\
+This to can be disabled:
+```python
+parser = arithmetic_parsing.Parser(
+    sort = False
+)
+```
