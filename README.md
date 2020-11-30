@@ -118,7 +118,7 @@ And lets break it down
     - This specifies that it is a dynamic value, and not a constant
 - base_0
     - This is the variable name, If you were to convert this into something like python.
-- +
+- \+
     - This is the operator
 - testVar2
     - This is the first operand
